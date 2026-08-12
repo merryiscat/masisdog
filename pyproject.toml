@@ -1,0 +1,9 @@
+[project]
+name = "masisdog"
+version = "0.1.0"
+description = "에이전트-퍼스트 폰 — 1단계 PC 원격 폰 조작 (uiautomator2/adb)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "uiautomator2>=3.7.0",
+]
