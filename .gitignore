@@ -1,0 +1,45 @@
+# === 비밀/환경 (절대 커밋 금지) ===
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# === Python (uv) ===
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+*.egg-info/
+
+# === 온디바이스 LLM 모델 (대용량, 커밋 금지) ===
+models/
+*.gguf
+*.bin
+*.safetensors
+
+# === Android / 빌드 산출물 (2단계 온디바이스 앱 이식 시) ===
+*.apk
+*.aab
+*.keystore
+local.properties
+.gradle/
+android/build/
+android/app/build/
+
+# === 실행 로그 / 캡처 (실험 산출물) ===
+logs/
+captures/
+*.log
+
+# === OS / 에디터 ===
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
