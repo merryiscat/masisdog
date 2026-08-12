@@ -37,6 +37,9 @@ logs/
 captures/
 *.log
 
+# === Claude Code 개인 설정 (팀 공유 X) ===
+.claude/settings.local.json
+
 # === OS / 에디터 ===
 .DS_Store
 Thumbs.db

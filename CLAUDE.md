@@ -25,6 +25,15 @@
 검증된 로직을 2단계에서 온디바이스 앱(Accessibility Service)으로 이식한다.
 마일스톤은 `docs/plan.md` §6.
 
+## 로컬 하네스 (킥오프 2026-08-13)
+
+- **폰 조작 드라이버 2종 병행**:
+  - `mobile` MCP(mobile-mcp) — 세션에서 Claude가 직접 폰 UI를 읽고 탭/스와이프. 개념 검증·탐색용. **활성됨**(설정: `.claude/settings.local.json`).
+  - `uiautomator2`(Python, `uv`) — 이식할 조작 로직을 코드로 고정. LLM 파이프라인에 끼우기 좋음.
+  - 둘 다 **실기기/에뮬 ADB 연결이 전제** — 현재 기기 미연결. 연결되면 `adb devices` 확인 후 착수.
+- MCP 정리: 상위 `.mcp.json`에 정의, masisdog는 context7·playwright·github·fetch·sequential-thinking·**mobile** 활성. firebase는 근거 없어 비활성(2단계 FCM 필요 시 재활성).
+- `.env` 접근은 훅으로 차단(`.claude/settings.json`).
+
 ## 작업 시 주의
 
 - Python은 uv (`uv add` / `uv run`). 온디바이스 LLM 모델(*.gguf 등)은 `models/`에 두고 **커밋 금지**.
