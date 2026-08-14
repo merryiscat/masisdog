@@ -16,8 +16,27 @@
 | 파일 | 내용 | 참조 시점 |
 |------|------|----------|
 | `docs/plan.md` | 전체 기획 — 경로 결정 근거, 능력/천장, Shizuku 부활 체인, 폰 조작 스택, 마일스톤, 기기 전략 | 설계·의사결정 시 |
+| `docs/usecases.md` | 킥오프 2부 — 유즈케이스 15개(해피/배드/필요기술) + 공통 전제 A~D | 케이스·범위 판단 시 |
+| `docs/stack.md` | 킥오프 3부 — 필요기술 4계층 집계, 스택 확정, 하네스 판정, 빌드 순서 | 스택·하네스·우선순위 판단 시 |
 
 > 새 기획/스펙/TODO 문서가 생기면 이 인덱스에 반드시 추가할 것.
+
+## docs/ — LLM 위키 (상시 기록)
+
+docs/는 llmwiki가 관리하는 위키다. 페이지는 LLM이 쓰고 사람은 읽는다.
+코드 수정 자체는 git이 기록한다 — 위키는 git이 못 담는 것을 담는다:
+**결정과 그 근거, 버그의 증상→원인→처치, 채택 안 된 대안, 대화에서 오간 아이디어.**
+
+- **기록은 명령을 기다리지 않는다** — 작업 중 결정·버그·아이디어·방향 전환이 나오면 그 자리에서
+  관련 페이지를 갱신하고 `docs/log.md`에 한 줄 남긴다: `## [YYYY-MM-DD] <작업> | <제목>`
+- 외부 자료·회의록 파일은 `docs/raw/`에 저장(불변) 후 소화한다. 대화에서 나온 결정은
+  페이지에 `derived_from: 대화 YYYY-MM-DD`로 출처를 남긴다
+- **버려지는 안건은 시점을 고정해 보류한다** — 갈림길에서 한쪽이 채택되면, 다른 쪽을
+  `docs/pending.md`에 재검토 시점(날짜 또는 관찰 가능한 조건)과 함께 기록한다.
+  시점 없이 "나중에 검토"로 넘기게 되면, 그 자리에서 사용자에게 시점을 받아 고정한다
+- 원본에 있는 주장(asserted)과 종합한 추론(inferred)을 구분해 적는다
+- 새 페이지가 생기면 `index.md`에 한 줄 요약을 올린다
+- docs 질문은 `index.md` → 관련 페이지 순으로 읽고, 근거가 없으면 없다고 답한다
 
 ## 현재 단계
 
@@ -31,7 +50,7 @@
   - `mobile` MCP(mobile-mcp) — 세션에서 Claude가 직접 폰 UI를 읽고 탭/스와이프. 개념 검증·탐색용. **활성됨**(설정: `.claude/settings.local.json`).
   - `uiautomator2`(Python, `uv`) — 이식할 조작 로직을 코드로 고정. LLM 파이프라인에 끼우기 좋음.
   - 둘 다 **실기기/에뮬 ADB 연결이 전제** — 현재 기기 미연결. 연결되면 `adb devices` 확인 후 착수.
-- MCP 정리: 상위 `.mcp.json`에 정의, masisdog는 context7·playwright·github·fetch·sequential-thinking·**mobile** 활성. firebase는 근거 없어 비활성(2단계 FCM 필요 시 재활성).
+- MCP 정리: 상위 `.mcp.json`에 정의, masisdog는 context7·github·fetch·sequential-thinking·**mobile** 활성. playwright는 3부 판정으로 제거(스택에 웹 브라우저 없음), firebase는 근거 없어 비활성(2단계 FCM 필요 시 재활성). 하네스 판정 근거는 `docs/stack.md` §3.
 - `.env` 접근은 훅으로 차단(`.claude/settings.json`).
 
 ## 작업 시 주의
