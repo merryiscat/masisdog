@@ -40,6 +40,8 @@
 
 uv/Python · uiautomator2 · adb · mobile-mcp — **3부에서 고르는 대상은 여기뿐.** ①②③는 우리가 만들 런타임 능력이지 개발 도구가 아니다.
 
+> **설치 범위(확정)**: 1단계는 **adb(platform-tools) 단독**이면 충분 — mobile-mcp·uiautomator2 둘 다 adb만 요구. **Android Studio는 불필요.** Android Studio는 2단계(온디바이스 네이티브 앱 빌드) 진입 시에만 설치. (에뮬레이터로 갈 경우엔 1단계에도 필요하나, 계획은 실물 폰.)
+
 ## 2. 스택 확정 (1부 가설 보정)
 
 1부 가설 `mobile-mcp / uiautomator2 / adb + 온디바이스 LLM`에 집계로 **추가**된 것:
